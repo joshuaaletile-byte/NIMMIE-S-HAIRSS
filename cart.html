@@ -1,1 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Your Cart – Nimmie’s Hairs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
+<header class="hero">
+  <h1>Your Cart</h1>
+  <p>Review your selected wigs & hair</p>
+  <a href="shop.html" class="btn">Back to Shop</a>
+</header>
+
+<section class="info" id="cart-items">
+  <!-- Cart items will show here -->
+</section>
+
+<h2 id="total"></h2>
+
+<a href="checkout.html" class="btn">Proceed to Checkout</a>
+
+<footer class="footer">
+  Powered by PH03NIX
+</footer>
+
+<script>
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  let cartContainer = document.getElementById("cart-items");
+  let total = 0;
+
+  if (cart.length === 0) {
+    cartContainer.innerHTML = "<p>Your cart is empty.</p>";
+  } else {
+    cart.forEach((item, index) => {
+      total += item.price;
+
+      cartContainer.innerHTML += `
+        <div class="card">
+          <h3>${item.name}</h3>
+          <p>₦${item.price.toLocaleString()}</p>
+          <button class="btn" onclick="removeItem(${index})">Remove</button>
+        </div>
+      `;
+    });
+  }
+
+  document.getElementById("total").innerText =
+    "Total: ₦" + total.toLocaleString();
+
+  function removeItem(index) {
+    cart.splice(index, 1);
+    localStorage.setItem("cart", JSON.stringify(cart));
+    location.reload();
+  }
+</script>
+
+</body>
+</html>
