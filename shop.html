@@ -1,1 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Shop – Nimmie’s Hairs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
+<header class="hero">
+  <h1>Shop Nimmie’s Hairs</h1>
+  <p>Choose your perfect wig & hair</p>
+  <a href="cart.html" class="btn">View Cart</a>
+</header>
+
+<section class="info">
+
+  <div class="card">
+    <h3>Bone Straight Wig</h3>
+    <p>₦75,000</p>
+    <button class="btn" onclick="addToCart('Bone Straight Wig', 75000)">
+      Add to Cart
+    </button>
+  </div>
+
+  <div class="card">
+    <h3>Body Wave Wig</h3>
+    <p>₦68,000</p>
+    <button class="btn" onclick="addToCart('Body Wave Wig', 68000)">
+      Add to Cart
+    </button>
+  </div>
+
+  <div class="card">
+    <h3>Curly Human Hair</h3>
+    <p>₦55,000</p>
+    <button class="btn" onclick="addToCart('Curly Human Hair', 55000)">
+      Add to Cart
+    </button>
+  </div>
+
+</section>
+
+<footer class="footer">
+  Powered by PH03NIX
+</footer>
+
+<script>
+  function addToCart(name, price) {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    cart.push({ name, price });
+    localStorage.setItem("cart", JSON.stringify(cart));
+    alert(name + " added to cart");
+  }
+</script>
+
+</body>
+</html>
